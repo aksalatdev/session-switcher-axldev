@@ -63,17 +63,17 @@ export class SessionList {
         <div class="${CSS_CLASSES.SESSION_ITEM} ${isActive ? CSS_CLASSES.ACTIVE : ""}"
              data-session-id="${session.id}"
              draggable="true">
-          <div class="drag-handle">⋮⋮</div>
+          <div class="drag-handle">⋮</div>
           <div class="session-info">
             <div class="session-name">${escapeHtml(session.name)}</div>
-            <div class="session-meta">${UI_TEXT.LAST_USED} ${lastUsed}</div>
+            <div class="session-meta">${lastUsed}</div>
           </div>
           <div class="session-actions">
             <button class="${CSS_CLASSES.SESSION_BTN} rename-btn" data-action="rename" data-session-id="${session.id}">
-              ✏️
+              Edit
             </button>
             <button class="${CSS_CLASSES.SESSION_BTN} delete-btn" data-action="delete" data-session-id="${session.id}">
-              🗑️
+              Del
             </button>
           </div>
         </div>
