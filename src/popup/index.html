@@ -10,17 +10,17 @@
     <div class="container">
       <header class="header">
         <h1 class="title">
-          Session Switcher <a class="byline" href="https://github.com/fanesz/session-switcher">by Fanesz</a>
+          Session Switcher
           <span class="info-icon">
-            i
+            ?
             <div class="info-tooltip">
-              <h4>How to use Session Switcher:</h4>
-              <p><strong>1.</strong> Login to your first account</p>
-              <p><strong>2.</strong> Press "Save Current Session"</p>
-              <p><strong>3.</strong> Press "New Session"</p>
-              <p><strong>4.</strong> Login to your other account</p>
-              <p><strong>5.</strong> Press "Save Current Session"</p>
-              <p><strong>6.</strong> Now you can easily switch between saved sessions!</p>
+              <h4>How to use</h4>
+              <p><strong>1.</strong> Login to your account</p>
+              <p><strong>2.</strong> Click "Save Session"</p>
+              <p><strong>3.</strong> Click "New" to start fresh</p>
+              <p><strong>4.</strong> Login to another account</p>
+              <p><strong>5.</strong> Save that session too</p>
+              <p><strong>6.</strong> Click any session to switch</p>
             </div>
           </span>
         </h1>
@@ -29,14 +29,8 @@
 
       <main class="content">
         <div class="actions-top">
-          <button id="saveBtn" class="btn btn-primary">
-            <span class="btn-icon">💾</span>
-            Save Current Session
-          </button>
-          <button id="newSessionBtn" class="btn btn-secondary">
-            <span class="btn-icon">🆕</span>
-            New Session
-          </button>
+          <button id="saveBtn" class="btn btn-primary">Save Session</button>
+          <button id="newSessionBtn" class="btn btn-secondary">New</button>
         </div>
 
         <div class="sessions-section">
@@ -48,7 +42,7 @@
       </main>
     </div>
 
-    <!-- Modals -->
+    <!-- Save Modal -->
     <div id="saveModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -56,8 +50,8 @@
           <button id="closeSaveModal" class="close-btn">&times;</button>
         </div>
         <div class="modal-body">
-          <label for="sessionName">Session Name:</label>
-          <input type="text" id="sessionName" placeholder="Enter session name" value="Unnamed Session" />
+          <label for="sessionName">Name</label>
+          <input type="text" id="sessionName" placeholder="e.g. Work Account" value="" />
         </div>
         <div class="modal-footer">
           <button id="cancelSave" class="btn btn-secondary">Cancel</button>
@@ -66,6 +60,7 @@
       </div>
     </div>
 
+    <!-- Rename Modal -->
     <div id="renameModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -73,7 +68,7 @@
           <button id="closeRenameModal" class="close-btn">&times;</button>
         </div>
         <div class="modal-body">
-          <label for="newSessionName">New Name:</label>
+          <label for="newSessionName">New name</label>
           <input type="text" id="newSessionName" placeholder="Enter new name" />
         </div>
         <div class="modal-footer">
@@ -83,6 +78,7 @@
       </div>
     </div>
 
+    <!-- Delete Modal -->
     <div id="deleteModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -90,8 +86,8 @@
           <button id="closeDeleteModal" class="close-btn">&times;</button>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to delete the session "<strong id="deleteSessionName"></strong>"?</p>
-          <p class="warning-text">This action cannot be undone.</p>
+          <p>Delete "<strong id="deleteSessionName"></strong>"?</p>
+          <p class="warning-text">This cannot be undone.</p>
         </div>
         <div class="modal-footer">
           <button id="cancelDelete" class="btn btn-secondary">Cancel</button>
@@ -100,6 +96,7 @@
       </div>
     </div>
 
+    <!-- Error Modal -->
     <div id="errorModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -114,6 +111,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
     <script src="index.js"></script>
   </body>

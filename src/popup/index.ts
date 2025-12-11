@@ -3,12 +3,15 @@ import { handleError } from "@shared/utils/errorHandling";
 import { LoadingManager } from "./components/loadingManager";
 import { ModalManager } from "./components/modalManager";
 import { SessionList } from "./components/sessionList";
+import { ToastManager } from "./components/toastManager";
 import { PopupService } from "./services/popup.service";
+import { UI_TEXT } from "./utils/constants";
 import { getElementByIdSafe } from "./utils/dom";
 
 class PopupController {
   private loadingManager = new LoadingManager();
   private modalManager = new ModalManager();
+  private toastManager = new ToastManager();
   private sessionList: SessionList;
   private popupService = new PopupService();
 
@@ -79,6 +82,7 @@ class PopupController {
 
       this.modalManager.hideSaveModal();
       this.renderSessionsList();
+      this.toastManager.success(UI_TEXT.SAVE_SUCCESS);
     } catch (error) {
       this.showError(handleError(error, "save session"));
     }
@@ -91,6 +95,7 @@ class PopupController {
       });
 
       this.renderSessionsList();
+      this.toastManager.success("New session created");
     } catch (error) {
       this.showError(handleError(error, "create new session"));
     }
@@ -103,6 +108,7 @@ class PopupController {
       });
 
       this.renderSessionsList();
+      this.toastManager.success(UI_TEXT.SWITCH_SUCCESS);
     } catch (error) {
       this.showError(handleError(error, "switch session"));
     }
@@ -124,6 +130,7 @@ class PopupController {
       if (newName && sessionId) {
         await this.popupService.renameSession(sessionId, newName);
         this.renderSessionsList();
+        this.toastManager.success("Session renamed");
       }
 
       this.modalManager.hideRenameModal();
@@ -147,6 +154,7 @@ class PopupController {
       if (sessionId) {
         await this.popupService.deleteSession(sessionId);
         this.renderSessionsList();
+        this.toastManager.success(UI_TEXT.DELETE_SUCCESS);
       }
 
       this.modalManager.hideDeleteModal();
@@ -170,8 +178,7 @@ class PopupController {
 
   private showError(message: string): void {
     console.error("Popup error:", message);
-
-    this.modalManager.showErrorModal(message);
+    this.toastManager.error(message);
   }
 }
 
